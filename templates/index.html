@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twitter (X) Sentiment Analysis</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-color: lightgreen;
+        background: linear-gradient(to right ,green,purple);
+      }
+      .container {
+        margin-top: 50px;
+      }
+      h1 {
+        color: white;
+        border: solid 2px pink;
+        background:linear-gradient(to left,yellow,blue)
+      }
+      .form-control {
+        background-color: #ffffff;
+      }
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+      .btn-primary:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+      }
+      .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border-color: #c3e6cb;
+      }
+      .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-color: #f5c6cb;
+      }
+      .alert-info {
+        background-color: #cce5ff;
+        color: #004085;
+        border-color: #b8daff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <h1 class="mb-4 text-center">Twitter (X) Sentiment Analysis</h1>
+          <form method="POST" action="{{ url_for('analyze_sentiment') }}">
+            <div class="form-group">
+              <label for="comment" style="color:white; border:solid 3px #d83c2;
+              background-color:  #5f5555 ">Enter the Tweets:</label>
+              <textarea
+                class="form-control"
+                id="comment"
+                name="comment"
+                rows="3"
+                placeholder="Type your comment here..."
+              ></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">
+                Analyze Sentiment
+              </button>
+            </div>
+          </form>
+
+          {% if sentiment is defined %}
+          <div class="mt-4">
+            {% if sentiment == 0 %}
+            <div class="alert alert-danger text-center" role="alert">
+              Negative comment!
+            </div>
+            {% elif sentiment == 1 %}
+            <div class="alert alert-info text-center" role="alert">
+              Positive comment!
+            </div>
+            {% else %}
+            <div class="alert alert-success text-center" role="alert">
+              Neutral comment!
+            </div>
+            {% endif %}
+
+            <div class="mt-2 alert alert-secondary text-center" role="alert">
+              Cluster: {{ cluster }}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  </body>
+</html>
