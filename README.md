@@ -84,6 +84,3 @@ Sentiment-Analysis/
     *   The `clf.pkl` model predicts the sentiment probability.
     *   The `KMeans` model assigns a cluster ID.
 4.  **Result**: The result is rendered on the web page.
-
-## 📜 License
-This project is open-source. Feel free to modify and distribute.
